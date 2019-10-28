@@ -16,7 +16,7 @@ fn main() -> Fallible<()> {
 
     // Create a new app
 //     let _root = document()
-//         .query_selector("#wasmapp")
+//         .query_selector("#root")
 //         .expect("can't get body node for rendering")
 //         .expect("can't unwrap body node");
 
