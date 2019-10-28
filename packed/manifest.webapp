@@ -1,0 +1,23 @@
+{
+  "version": "0.1.0",
+  "name": "Rust App for KaiOS",
+  "description": "Simple example",
+  "type": "web",
+  "launch_path": "/index.html",
+  "icons": {
+    "56": "kaios_56.png",
+    "112": "kaios_112.png"
+  },
+  "developer": {
+    "name": "Hugues",
+    "url": "https://izissise.net"
+  },
+  "locales": {
+    "en-US": {
+      "name": "Rust App for KaiOS",
+      "subtitle": "Simple example",
+      "description": "Simple example"
+    }
+  },
+  "default_locale": "en-US"
+}

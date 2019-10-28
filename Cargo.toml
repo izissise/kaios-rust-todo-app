@@ -1,0 +1,19 @@
+[package]
+name = "rust-test-app"
+version = "0.1.0"
+authors = ["Hugues Morisset <morisset.hugues@gmail.com>"]
+edition = "2018"
+
+[[bin]]
+name = "app"
+path = "src/main.rs"
+
+[build-dependencies]
+failure = "0.1.5"
+sass-rs = "0.2.1"
+url = "1.7.2"
+
+[dependencies]
+failure = "0.1.5"
+log = "0.4.6"
+stdweb = "0.4.17"
