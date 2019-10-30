@@ -11,12 +11,13 @@ use std::{
     process::Command,
 };
 
+/*
 const CSS_FILE: &str = "style.css";
-const SCSS_FILE: &str = "style.scss";
+const SCSS_FILE: &str = "style.scss";*/
 
 pub fn main() -> Fallible<()> {
     // Prepeare the complete style
-    prepare_style()?;
+//     prepare_style()?;
 
     Ok(())
 }
@@ -32,7 +33,7 @@ pub fn main() -> Fallible<()> {
 //     }
 //     Ok(())
 // }
-
+/*
 fn prepare_style() -> Fallible<()> {
     // Prepare the directory
     let out_dir = env::var("OUT_DIR")?;
@@ -51,8 +52,9 @@ fn prepare_style() -> Fallible<()> {
             target.pop();
             target.push(CSS_FILE);
             write(&target, content)?;
+            copy(&target, format!("static/{}", CSS_FILE))?;
         }
     }
 
     Ok(())
-}
+}*/

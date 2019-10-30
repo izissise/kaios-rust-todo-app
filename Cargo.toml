@@ -17,3 +17,11 @@ url = "1.7.2"
 failure = "0.1.5"
 log = "0.4.6"
 stdweb = "0.4.17"
+
+# Metadata used when generating an Android APK, for example.
+[package.metadata.kaios]
+app-name = "Rust App for KaiOS"
+app-description = "Rust App for KaiOS"
+app-icons = {"56" = "app_56.png", "112" = "app_112.png", "128" = "app_128.png"}
+app-locales = { "en-US" = { "name" = "Rust App for KaiOS", "subtitle" = "Simple example", "description" = "Simple example" } }
+app-default-locale = "en-US"
