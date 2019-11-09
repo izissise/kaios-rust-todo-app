@@ -1,5 +1,6 @@
 [package]
 name = "rust-test-app"
+description = "Simple todo app for kaios in rust"
 version = "0.1.0"
 authors = ["Hugues Morisset <morisset.hugues@gmail.com>"]
 edition = "2018"
@@ -9,8 +10,10 @@ name = "app"
 path = "src/main.rs"
 
 [build-dependencies]
+cargo_metadata = "0.9.0"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = { version = "1.0", features = ["preserve_order"] }
 failure = "0.1.5"
-sass-rs = "0.2.1"
 url = "1.7.2"
 
 [dependencies]
@@ -18,10 +21,8 @@ failure = "0.1.5"
 log = "0.4.6"
 stdweb = "0.4.17"
 
-# Metadata used when generating an Android APK, for example.
+# Metadata used when generating kaios manifest
 [package.metadata.kaios]
-app-name = "Rust App for KaiOS"
-app-description = "Rust App for KaiOS"
+app-launch-path = "/index.html"
 app-icons = {"56" = "app_56.png", "112" = "app_112.png", "128" = "app_128.png"}
-app-locales = { "en-US" = { "name" = "Rust App for KaiOS", "subtitle" = "Simple example", "description" = "Simple example" } }
-app-default-locale = "en-US"
+app-locales = { "en-US" = { "name" = "Rust Todo App for KaiOS", "subtitle" = "Simple example", "description" = "Simple example" } }
