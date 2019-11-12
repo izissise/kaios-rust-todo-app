@@ -1,13 +1,13 @@
 #[macro_use]
 extern crate failure;
-use failure::{Error, Fallible};
+use failure::{Fallible};
 use std::collections::BTreeMap;
-// use std::{
-//     env,
-//     fs::{copy, write},
-//     path::{Path, PathBuf},
-//     process::Command,
-// };
+use std::{
+    env,
+    io::{Write, BufWriter},
+    fs::{copy, File},
+    path::{Path},
+};
 
 use serde::{Deserialize, Serialize};
 use serde_json;
@@ -41,23 +41,13 @@ enum GenKaiosManifestError {
 
 pub fn main() -> Fallible<()> {
     let metadata = package_metadata();
-    generate_kaios_manifest(package_metadata_to_kaios_manifest(metadata)?);
+    let manifest = generate_kaios_manifest(package_metadata_to_kaios_manifest(metadata)?);
+    copy(manifest, "./static/manifest.webapp")?; // Copy file to cargo web static folder
     Ok(())
 }
 
 fn package_metadata() -> Metadata {
-    let mut args = std::env::args().skip_while(|val| !val.starts_with("--manifest-path"));
-
     let mut cmd = cargo_metadata::MetadataCommand::new();
-    let manifest_path = match args.next() {
-        Some(ref p) if p == "--manifest-path" => {
-            cmd.manifest_path(args.next().unwrap());
-        }
-        Some(p) => {
-            cmd.manifest_path(p.trim_start_matches("--manifest-path="));
-        }
-        None => {}
-    };
     cmd.exec().unwrap()
 }
 
@@ -110,7 +100,7 @@ fn package_metadata_to_kaios_manifest(
         .unwrap_or(&"".to_owned())
         .clone();
     let version = &package_with_kaios_metadata.version;
-    let version = format!("{}-{}-{}", version.major, version.minor, version.patch).to_owned();
+    let version = format!("{}.{}.{}", version.major, version.minor, version.patch).to_owned();
     let developer = match package_with_kaios_metadata.authors.iter().nth(0) {
         Some(a) => a,
         None => return Err(GenKaiosManifestError::NoAuthorFound),
@@ -195,18 +185,9 @@ fn package_metadata_to_kaios_manifest(
     })
 }
 
-fn generate_kaios_manifest(manifest: KaiosManifest) {
-    println!("{}", serde_json::to_string(&manifest).unwrap());
+fn generate_kaios_manifest(manifest: KaiosManifest) -> std::path::PathBuf {
+    let path = Path::new(&env::var("OUT_DIR").unwrap()).join("manifest.webapp");
+    let mut file = BufWriter::new(File::create(&path).unwrap());
+    writeln!(&mut file, "{}", serde_json::to_string_pretty(&manifest).unwrap()).unwrap();
+    path
 }
-
-// fn run<F>(name: &str, mut configure: F) -> Fallible<()>
-// where
-//     F: FnMut(&mut Command) -> &mut Command,
-// {
-//     let mut command = Command::new(name);
-//     let configured = configure(&mut command);
-//     if !configured.status()?.success() {
-//         panic!("failed to execute {:?}", configured);
-//     }
-//     Ok(())
-// }
