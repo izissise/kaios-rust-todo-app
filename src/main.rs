@@ -5,6 +5,7 @@ use failure::Fallible;
 
 use stdweb::traits::*;
 use stdweb::unstable::TryInto;
+// use stdweb::js;
 use stdweb::web::{document, html_element::InputElement, Element, HtmlElement, Node};
 
 use stdweb::web::event::KeyPressEvent;
@@ -94,6 +95,7 @@ fn add_todo(text: String) {
     let new_todo = document().create_element("SPAN").unwrap();
     let text_node = document().create_text_node(&text);
     new_todo.set_attribute("nav-selectable", "true").unwrap();
+    new_todo.set_attribute("tabindex", "0").unwrap();
     new_todo.append_child(&text_node);
     todo_list.append_child(&new_todo);
 }

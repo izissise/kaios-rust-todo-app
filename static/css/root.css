@@ -9,6 +9,6 @@ body,
   margin: 0;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+/*   overflow: hidden; */
   background-color: #E1E2E1 !important;
 }
