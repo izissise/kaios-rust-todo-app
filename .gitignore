@@ -11,6 +11,7 @@
 .gdb_history
 target/
 /proptest-regressions
+build/
 
 #KDevelop
 .kdev4/
@@ -20,12 +21,9 @@ target/
 *.kdevelop.pcs
 *.kdevses
 .*kate-swp
-build/
 
 #IntelliJ files
 .idea/
-target/
-crud-repository.iml
 
 #####
 # OS X temporary files that should never be committed

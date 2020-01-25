@@ -1,12 +1,12 @@
 #[macro_use]
 extern crate failure;
-use failure::{Fallible};
+use failure::Fallible;
 use std::collections::BTreeMap;
 use std::{
     env,
-    io::{Write, BufWriter},
     fs::{copy, File},
-    path::{Path},
+    io::{BufWriter, Write},
+    path::Path,
 };
 
 use serde::{Deserialize, Serialize};
@@ -188,6 +188,11 @@ fn package_metadata_to_kaios_manifest(
 fn generate_kaios_manifest(manifest: KaiosManifest) -> std::path::PathBuf {
     let path = Path::new(&env::var("OUT_DIR").unwrap()).join("manifest.webapp");
     let mut file = BufWriter::new(File::create(&path).unwrap());
-    writeln!(&mut file, "{}", serde_json::to_string_pretty(&manifest).unwrap()).unwrap();
+    writeln!(
+        &mut file,
+        "{}",
+        serde_json::to_string_pretty(&manifest).unwrap()
+    )
+    .unwrap();
     path
 }

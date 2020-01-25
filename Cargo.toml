@@ -1,7 +1,7 @@
 [package]
-name = "rust-test-app"
+name = "kaios-rust-todo-app"
 description = "Simple todo app for kaios in rust"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["Hugues Morisset <morisset.hugues@gmail.com>"]
 edition = "2018"
 
@@ -25,4 +25,4 @@ stdweb = "0.4.17"
 [package.metadata.kaios]
 app-launch-path = "/index.html"
 app-icons = {"56" = "app_56.png", "112" = "app_112.png", "128" = "app_128.png"}
-app-locales = { "en-US" = { "name" = "Rust Todo App for KaiOS", "subtitle" = "Simple example", "description" = "Simple example" } }
+app-locales = { "en-US" = { "name" = "Rust Todo App for KaiOS", "subtitle" = "Manage todos", "description" = "What's next todo?" } }

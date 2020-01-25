@@ -12,26 +12,3 @@ body,
 /*   overflow: hidden; */
   background-color: #E1E2E1 !important;
 }
-
-/*
-  Remove the following styles before
-  sending to the device or simulator
-*/
-
-/*html,
-body,
-#root {
-  height: 320px;
-  width: 240px;
-}
-
-html,
-body {
-  background-color: #1c2022;
-}
-
-#softkey {
-  top: 320px;
-  bottom: auto !important;
-  width: 240px;
-}*/
